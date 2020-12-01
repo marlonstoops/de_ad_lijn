@@ -1,37 +1,25 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<x-guest-layout>
+    <x-jet-authentication-card>
+        <x-slot name="logo">
+            <x-jet-authentication-card-logo />
+        </x-slot>
 
-        <title>Laravel</title>
+        <x-jet-validation-errors class="mb-4" />
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        @auth
+            <x-jet-responsive-nav-link href="{{ route('dashboard') }}">
+                {{ __('Dashboard') }}
+            </x-jet-responsive-nav-link>
+        @else
+            <x-jet-responsive-nav-link href="{{ route('login') }}">
+                {{ __('Login') }}
+            </x-jet-responsive-nav-link>
 
-        <!-- Styles -->
+            <x-jet-responsive-nav-link href="{{ route('register') }}">
+                {{ __('Register') }}
+            </x-jet-responsive-nav-link>
+        @endauth
+    </x-jet-authentication-card>
 
-        <style>
-            body {
-                font-family: 'Nunito';
-            }
-        </style>
-    </head>
-    <body class="antialiased">
-<div class="container">
-    <div class="col-6 col-offset-3">
+</x-guest-layout>
 
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="btn btn-lg btn-block">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="btn btn-lg btn-bloc">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn btn-lg btn-bloc">Register</a>
-                        @endif
-                    @endauth
-    </div>
-</div>
-    </body>
-</html>
