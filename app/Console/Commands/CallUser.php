@@ -6,7 +6,7 @@ use App\Models\User;
 use Twilio\Rest\Client;
 use Illuminate\Console\Command;
 
-class SendSms extends Command
+class CallUser extends Command
 {
     /**
      * The name and signature of the console command.
