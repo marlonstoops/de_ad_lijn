@@ -1,10 +1,9 @@
 <?php
 
-use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
+use App\Providers\RouteServiceProvider;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Fortify Guard
@@ -140,5 +139,4 @@ return [
             'confirmPassword' => true,
         ]),
     ],
-
 ];
