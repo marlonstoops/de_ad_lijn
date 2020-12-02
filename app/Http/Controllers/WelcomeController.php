@@ -8,4 +8,9 @@ class WelcomeController extends Controller
     {
         return view('welcome');
     }
+
+    public function verifyPhone()
+    {
+        return view('verify-phone');
+    }
 }

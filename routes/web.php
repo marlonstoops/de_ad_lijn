@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\XmlController;
+use App\Http\MobileVerificationRequest;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -15,9 +17,27 @@ use App\Http\Controllers\WelcomeController;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified-mobile'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/verify-phone', [WelcomeController::class, 'verifyPhone'])->name('verify-phone');
 Route::get('/{id}.xml', [XmlController::class, 'index'])->name('xml');
+
+// Mobile verification
+Route::get('/mobile/verify', function () {
+    return view('auth.verify-mobile');
+})->middleware(['auth'])->name('verification.notice');
+
+Route::get('/mobile/verify/{id}/{hash}', function (MobileVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/mobile/verification-notification', function (Request $request) {
+    $request->user()->sendMobileVerificationNotification();
+
+    return back()->with('status', 'verification-link-sent');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
