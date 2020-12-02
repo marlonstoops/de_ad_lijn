@@ -54,6 +54,7 @@ class CallUser extends Command
             config('twilio.number'),
             [
                 'url' => route('xml', ['id' => 1]),
+                'method' => 'get',
             ]
         );
     }
