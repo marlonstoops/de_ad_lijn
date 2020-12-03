@@ -37,7 +37,7 @@ Route::get('/mobile/verify', [VerificationController::class, 'notice'])
     ->middleware(['auth'])->name('verification.notice');
 
 Route::get('/mobile/verify/{id}/{hash}', [VerificationController::class, 'verify'])
-    ->middleware(['auth', 'signed'])->name('verification.verify');
+    ->middleware(['signed'])->name('verification.verify');
 
 Route::post('/mobile/verification-notification', function (Request $request) {
     $request->user()->sendMobileVerificationNotification();
