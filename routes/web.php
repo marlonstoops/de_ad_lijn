@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\XmlController;
 use App\Http\MobileVerificationRequest;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,8 @@ Route::get('/verify-phone', [WelcomeController::class, 'verifyPhone'])->name('ve
 Route::get('/{id}.xml', [XmlController::class, 'index'])->name('xml');
 
 // Mobile verification
-Route::get('/mobile/verify', function () {
-    return view('auth.verify-mobile');
-})->middleware(['auth'])->name('verification.notice');
+Route::get('/mobile/verify', [VerificationController::class, 'verify'])
+    ->middleware(['auth'])->name('verification.notice');
 
 Route::get('/mobile/verify/{id}/{hash}', function (MobileVerificationRequest $request) {
     $request->fulfill();
