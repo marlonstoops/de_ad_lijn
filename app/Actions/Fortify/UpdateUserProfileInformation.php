@@ -2,9 +2,11 @@
 
 namespace App\Actions\Fortify;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Support\Facades\Validator;
+use App\Rules\Mobile;
 use Illuminate\Validation\Rule;
+use App\Contracts\MustVerifyMobile;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
@@ -14,14 +16,14 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      *
      * @param  mixed  $user
      * @param  array  $input
-     * @return void
      */
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'image', 'max:1024'],
+            'name'   => ['required', 'string', 'max:255'],
+            'email'  => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'mobile' => ['required', 'string', new Mobile, Rule::unique('users')->ignore($user->id)],
+            'photo'  => ['nullable', 'image', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -30,10 +32,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 
         if ($input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail) {
-            $this->updateVerifiedUser($user, $input);
+            $this->updateEmailVerifiedUser($user, $input);
+        } elseif ($input['mobile'] !== $user->mobile &&
+            $user instanceof MustVerifyMobile) {
+            $this->updateMobileVerifiedUser($user, $input);
         } else {
             $user->forceFill([
-                'name' => $input['name'],
+                'name'  => $input['name'],
                 'email' => $input['email'],
             ])->save();
         }
@@ -44,16 +49,32 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      *
      * @param  mixed  $user
      * @param  array  $input
-     * @return void
      */
-    protected function updateVerifiedUser($user, array $input)
+    protected function updateEmailVerifiedUser($user, array $input)
     {
         $user->forceFill([
-            'name' => $input['name'],
-            'email' => $input['email'],
+            'name'              => $input['name'],
+            'email'             => $input['email'],
             'email_verified_at' => null,
         ])->save();
 
         $user->sendEmailVerificationNotification();
+    }
+
+    /**
+     * Update the given verified user's profile information.
+     *
+     * @param  mixed  $user
+     * @param  array  $input
+     */
+    protected function updateMobileVerifiedUser($user, array $input)
+    {
+        $user->forceFill([
+            'name'               => $input['name'],
+            'mobile'             => $input['mobile'],
+            'mobile_verified_at' => null,
+        ])->save();
+
+        $user->sendMobileVerificationNotification();
     }
 }
