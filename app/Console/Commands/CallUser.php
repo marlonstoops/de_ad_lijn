@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
 use Twilio\Rest\Client;
 use Illuminate\Console\Command;
 
@@ -13,7 +12,7 @@ class CallUser extends Command
      *
      * @var string
      */
-    protected $signature = 'user:call {user}';
+    protected $signature = 'user:call {mobile}';
 
     /**
      * The console command description.
@@ -45,12 +44,12 @@ class CallUser extends Command
      */
     public function handle()
     {
-        // $user = User::where('mobile', $this->argument('user'))->firstOrFail();
+        $mobile = $this->argument('mobile');
 
         // Use the client to do fun stuff like send text messages!
         $this->client->calls->create(
             // the number you'd like to send the message to
-            '+32485933063',
+            $mobile,
             config('twilio.number'),
             [
                 'url'    => 'http://77.243.238.175:8080/default.xml',
