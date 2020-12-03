@@ -23,7 +23,7 @@ class Mobile implements Rule
      */
     public function passes($attribute, $value)
     {
-        $pattern = '/(\+324)[0-9]{8}/';
+        $pattern = '/^(\+324)[0-9]{8}$/';
 
         return preg_match($pattern, $value) === 1;
     }
