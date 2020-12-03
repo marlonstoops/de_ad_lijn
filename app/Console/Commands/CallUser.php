@@ -34,7 +34,9 @@ class CallUser extends Command
         $id    = config('twilio.id');
         $token = config('twilio.token');
 
-        $this->client = new Client($id, $token);
+        if ($id && $token) {
+            $this->client = new Client($id, $token);
+        }
     }
 
     /**
@@ -44,6 +46,10 @@ class CallUser extends Command
      */
     public function handle()
     {
+        if (! $this->client) {
+            return;
+        }
+
         $mobile = $this->argument('mobile');
 
         // Use the client to do fun stuff like send text messages!
