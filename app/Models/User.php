@@ -29,6 +29,7 @@ class User extends Authenticatable implements MustVerifyMobile
         'email',
         'mobile',
         'password',
+        'credit',
     ];
 
     /**
@@ -60,4 +61,14 @@ class User extends Authenticatable implements MustVerifyMobile
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function lijnen()
+    {
+        return $this->hasMany(AdLijn::class);
+    }
+
+    public function hasCredit()
+    {
+        return $this->credit > 0;
+    }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\XmlController;
+use App\Http\Controllers\AdLijnController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\VerificationController;
 
@@ -17,9 +18,15 @@ use App\Http\Controllers\VerificationController;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified-mobile'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified-mobile'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // De ad lijn
+    Route::post('/ad-lijn', [AdLijnController::class, 'post'])
+        ->name('ad-lijn');
+});
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/verify-phone', [WelcomeController::class, 'verifyPhone'])->name('verify-phone');
