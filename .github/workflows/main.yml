@@ -36,7 +36,7 @@ jobs:
         with:
           php-version: 7.4
       - name: Deploy
-        uses: deployphp/action@master
+        uses: marlonstoops/action@master
         with:
           private-key: ${{ secrets.SSH_KEY }}
           dep: deploy prod -v
