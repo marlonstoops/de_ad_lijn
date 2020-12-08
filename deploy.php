@@ -5,7 +5,7 @@ namespace Deployer;
 require 'recipe/laravel.php';
 
 // Project name
-set('application', 'my_project');
+set('application', 'adlijn.be');
 
 // Project repository
 set('repository', 'git@github.com:marlonstoops/de_ad_lijn.git');
@@ -21,12 +21,12 @@ add('shared_dirs', []);
 add('writable_dirs', []);
 
 // Hosts
-host('project.com')
-    ->set('deploy_path', '~/{{application}}');
+host('ssh.adlijn.be')
+    ->set('deploy_path', '~/webroot/ROOT/adlijn.be');
 
 // Tasks
 task('build', function () {
-    run('cd {{release_path}} && build');
+    run('cd {{release_path}} && npm install && npm run prod');
 });
 
 // [Optional] if deploy fails automatically unlock.
