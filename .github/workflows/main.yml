@@ -21,22 +21,20 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v1
-      - name: Create SSH key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/id_rsa_adlijn
-          sudo chmod 600 ~/.ssh/id_rsa_adlijn
-          echo "$SSH_CONFIG" > ~/.ssh/config
-        shell: bash
-        env:
-          SSH_KEY: ${{secrets.SSH_KEY}}
-          SSH_CONFIG: ${{secrets.SSH_CONFIG}}
       - name: Setup PHP
         uses: shivammathur/setup-php@master
         with:
           php-version: 7.4
       - name: Deploy
-        uses: marlonstoops/action@master
-        with:
-          private-key: ${{ secrets.SSH_KEY }}
-          dep: deploy prod -v
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/id_rsa_adlijn
+          sudo chmod 600 ~/.ssh/id_rsa_adlijn
+          echo "$SSH_CONFIG" > ~/.ssh/config
+          curl -LO https://deployer.org/deployer.phar
+          chmod +x deployer.phar
+          deployer.phar deploy -v
+        shell: bash
+        env:
+          SSH_KEY: ${{secrets.SSH_KEY}}
+          SSH_CONFIG: ${{secrets.SSH_CONFIG}}
