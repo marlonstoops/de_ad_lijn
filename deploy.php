@@ -8,7 +8,7 @@ require 'recipe/laravel.php';
 set('application', 'adlijn.be');
 
 // Project repository
-set('repository', 'git@github.com:marlonstoops/de_ad_lijn.git');
+set('repository', 'https://github.com/marlonstoops/de_ad_lijn.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', false);
