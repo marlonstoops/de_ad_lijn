@@ -43,7 +43,7 @@ class CreateNewUser implements CreatesNewUsers
             $user->update($data);
             $user->save();
         } else {
-            $data['credit'] = 3;
+            $data['credit'] = 5;
             $user           = User::create($data);
         }
 
