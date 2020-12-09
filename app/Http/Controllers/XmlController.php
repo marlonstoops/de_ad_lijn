@@ -6,7 +6,7 @@ class XmlController extends Controller
 {
     public function index($id)
     {
-        $xml = '<?xml version="1.0" encoding="UTF-8"?>
+        $xml = '
             <Response>
                 <Say voice="alice">Thanks for trying our documentation. Enjoy!</Say>
                 <Play>http://demo.twilio.com/docs/classic.mp3</Play>
