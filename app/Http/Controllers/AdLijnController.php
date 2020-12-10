@@ -30,7 +30,7 @@ class AdLijnController extends Controller
 
         \Auth::user()->lijnen()->save($adlijn);
 
-        $this->call($user);
+        $this->call(\Auth::user());
 
         return redirect()->route('dashboard');
 
