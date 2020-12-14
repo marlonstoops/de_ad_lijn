@@ -29,6 +29,8 @@ task('build', function () {
     run('cd {{release_path}} && npm install && npm run prod');
 });
 
+after('artisan:migrate', 'build');
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
