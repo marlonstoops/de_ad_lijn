@@ -7,19 +7,18 @@
         <x-jet-validation-errors class="mb-4" />
 
         @auth
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}">
-                {{ __('Dashboard') }}
-            </x-jet-responsive-nav-link>
+        <x-welomce-menu-item href="{{ route('dashboard') }}">
+            {{ __('Dashboard') }}
+        </x-welomce-menu-item>
         @else
-            <x-jet-responsive-nav-link href="{{ route('login') }}">
-                {{ __('Login') }}
-            </x-jet-responsive-nav-link>
+        <x-welcome-menu-item href="{{ route('login') }}">
+            {{ __('Login') }}
+        </x-welcome-menu-item>
 
-            <x-jet-responsive-nav-link href="{{ route('register') }}">
-                {{ __('Register') }}
-            </x-jet-responsive-nav-link>
+        <x-welcome-menu-item href="{{ route('register') }}">
+            {{ __('Register') }}
+        </x-welcome-menu-item>
         @endauth
     </x-jet-authentication-card>
 
 </x-guest-layout>
-
