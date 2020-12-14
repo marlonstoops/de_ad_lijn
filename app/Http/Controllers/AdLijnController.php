@@ -47,6 +47,12 @@ class AdLijnController extends Controller
     }
 
     private function call($adlijn) {
+        if (config('app.debug')) {
+            \Log::info(sprintf('Called user %s (%s)', $adlijn->name, $adlijn->mobile));
+
+            return;
+        }
+
         // Use the client to do fun stuff like send text messages!
         $this->client->calls->create(
             // the number you'd like to send the message to
