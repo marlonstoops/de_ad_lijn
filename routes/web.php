@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\XmlController;
 use App\Http\Controllers\AdLijnController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerificationController;
 
 /*
@@ -19,11 +20,10 @@ use App\Http\Controllers\VerificationController;
 */
 
 Route::middleware(['auth:sanctum', 'verified-mobile'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
-    // De ad lijn
+    // De enige echte ad lijn
     Route::post('/ad-lijn', [AdLijnController::class, 'post'])
         ->name('ad-lijn');
 });
