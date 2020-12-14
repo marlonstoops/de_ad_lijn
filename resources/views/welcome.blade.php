@@ -7,9 +7,9 @@
         <x-jet-validation-errors class="mb-4" />
 
         @auth
-        <x-welomce-menu-item href="{{ route('dashboard') }}">
+        <x-welcome-menu-item href="{{ route('dashboard') }}">
             {{ __('Dashboard') }}
-        </x-welomce-menu-item>
+        </x-welcome-menu-item>
         @else
         <x-welcome-menu-item href="{{ route('login') }}">
             {{ __('Login') }}
