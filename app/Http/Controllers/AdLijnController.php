@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Twilio\Rest\Client;
 use App\Models\AdLijn;
 use App\Http\Requests\AdLijnRequest;
@@ -29,6 +30,15 @@ class AdLijnController extends Controller
         ]);
 
         \Auth::user()->lijnen()->save($adlijn);
+
+        // Check if called user is a registered user
+        $calledUser = User::where('mobile', $adlijn->mobile)->first();
+
+        // If so reset the user's credits
+        if ($calledUser) {
+            $calledUser->credit = 4;
+            $calledUser->save();
+        }
 
         $this->call($adlijn);
 
