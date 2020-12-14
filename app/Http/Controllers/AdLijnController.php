@@ -30,17 +30,17 @@ class AdLijnController extends Controller
 
         \Auth::user()->lijnen()->save($adlijn);
 
-        $this->call(\Auth::user());
+        $this->call($adlijn);
 
         return redirect()->route('dashboard');
 
     }
 
-    private function call($user) {
+    private function call($adlijn) {
         // Use the client to do fun stuff like send text messages!
         $this->client->calls->create(
             // the number you'd like to send the message to
-            $user->mobile,
+            $adlijn->mobile,
             config('twilio.number'),
             [
                 'url' => url('1.xml'),
