@@ -17,7 +17,6 @@ class CreateAdLijnTable extends Migration
             $table->string('name');
             $table->string('mobile');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
