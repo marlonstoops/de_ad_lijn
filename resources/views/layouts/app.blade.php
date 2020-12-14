@@ -39,4 +39,7 @@
 
         @livewireScripts
     </body>
+    <footer class="font-sans antialiased bg-gray-100">
+        <div>Icons made by <a href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </footer>
 </html>
