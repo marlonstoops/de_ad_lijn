@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\XmlController;
+use App\Http\Controllers\TermController;
 use App\Http\Controllers\AdLijnController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DashboardController;
@@ -29,6 +30,9 @@ Route::middleware(['auth:sanctum', 'verified-mobile'])->group(function () {
 });
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+Route::get('/terms', [TermController::class, 'index'])->name('terms');
+
 Route::get('/verify-phone', [WelcomeController::class, 'verifyPhone'])->name('verify-phone');
 Route::get('/{id}.xml', [XmlController::class, 'index'])->name('xml');
 
