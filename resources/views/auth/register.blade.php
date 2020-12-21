@@ -100,7 +100,18 @@
                 <x-jet-button class="ml-4">
                     {{ __('Register') }}
                 </x-jet-button>
+
             </div>
+
+            <p class="text-sm mt-6 text-gray-600 hover:text-gray-900">
+                By creating an account you agree to our
+                <a
+                    href="{{ route('terms') }}"
+                    class="underline"
+                >
+                    {{ __('Terms and Conditions.') }}
+                </a>
+            </p>
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
