@@ -6,6 +6,11 @@ COPY composer.lock composer.json /var/www/
 # Set working directory
 WORKDIR /var/www
 
+RUN apt-get update && \
+apt-get -y install curl dirmngr apt-transport-https lsb-release ca-certificates && \
+curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+&& apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -19,13 +24,11 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libzip-dev \
     locales \
-    npm \
+    nodejs \
     unzip \
     vim \
-    zip 
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    zip \
+&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
 RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl curl
