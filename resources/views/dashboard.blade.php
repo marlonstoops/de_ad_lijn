@@ -10,12 +10,12 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     <p>
-                        <!-- TODO -->
+                        Enter a name and phone number for the person to be Adlijned!
                     </p>
 
                     @if(\Auth::user() && \Auth::user()->hasCredit())
                     <div class="mt-6 text-gray-500">
-                        <!-- TODO -->
+                        Amount of calls you can make:
                         <b>{{ \Auth::user()->credit }}</b>
                     </div>
                     <div class="mt-6 text-gray-500">
@@ -76,7 +76,11 @@
                         </form>
                     </div>
                     @else
-                    <!-- TODO -->
+                    <div class="mt-6 text-red">
+                        <p>
+                            You ran out of calls, to reset it back to 5 get someone to Adlijn you.
+                        </p>
+                    </div>
                     @endif
 
                 </div>
