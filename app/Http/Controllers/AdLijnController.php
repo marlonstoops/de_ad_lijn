@@ -59,9 +59,9 @@ class AdLijnController extends Controller
             $adlijn->mobile,
             config('twilio.number'),
             [
-                'url' => url('1.xml'),
+                'url' => route('xml', [1, 'name' => $adlijn->name]),
                 'method' => 'get',
             ]
         );
-}
+    }
 }

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class XmlController extends Controller
 {
-    public function index($id)
+    public function index($id, Request $request)
     {
+        $name = $request->get('name');
+
         $xml = '
             <Response>
                 <Say voice="alice">Thanks for trying our documentation. Enjoy!</Say>
