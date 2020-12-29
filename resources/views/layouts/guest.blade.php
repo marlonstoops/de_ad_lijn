@@ -121,9 +121,19 @@
 </head>
 
 <body>
+
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
     </div>
+
+    <div id="liquid">
+        <div class="bubble bubble1"></div>
+        <div class="bubble bubble2"></div>
+        <div class="bubble bubble3"></div>
+        <div class="bubble bubble4"></div>
+        <div class="bubble bubble5"></div>
+    </div>
+
     @include('components.footer')
 </body>
 

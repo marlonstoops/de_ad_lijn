@@ -1,0 +1,87 @@
+
+@import url(https://fonts.googleapis.com/css?family=Lato:700,900);
+
+#liquid div {
+    position: absolute;
+}
+
+#liquid {
+    z-index: -1;
+    position: fixed;
+    background-color: #f2c025;
+    border: 10px solid #f2c025;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#liquid:after {
+    background-color: rgba(255, 255, 255, 0.25);
+    bottom: -10px;
+    content: '';
+    height: 110vhj;
+    left: -40px;
+    position: absolute;
+    transform: rotate(30deg);
+    -webkit-transform: rotate(15deg);
+    width: 110px;
+}
+
+#liquid .bubble {
+    -webkit-animation-name: bubble;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    background-color: rgba(255, 255, 255, 0.2);
+    bottom: 0;
+    border-radius: 10px;
+    height: 20px;
+    width: 20px;
+}
+
+@-webkit-keyframes bubble {
+    0% { bottom: 0; }
+
+    50% {
+        background-color: rgba(255, 255, 255, 0.2);
+        bottom: 50vh;
+    }
+
+    100% {
+        background-color: rgba(255, 255, 255, 0);
+        bottom: 100vh;
+    }
+}
+
+.bubble1 {
+    left: 10%;
+    -webkit-animation-delay: 1000ms;
+    -webkit-animation-duration: 4000ms;
+}
+
+.bubble2 {
+    left: 20%;
+    -webkit-animation-delay: 700ms;
+    -webkit-animation-duration: 4400ms;
+}
+
+.bubble3 {
+    left: 40%;
+    -webkit-animation-delay: 1200ms;
+    -webkit-animation-duration: 5200ms;
+}
+
+.bubble4 {
+    left: 60%;
+    -webkit-animation-delay: 1100ms;
+    -webkit-animation-duration: 2800ms;
+}
+
+.bubble5 {
+    left: 80%;
+    -webkit-animation-delay: 1400ms;
+    -webkit-animation-duration: 2400ms;
+}
+
