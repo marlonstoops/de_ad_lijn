@@ -221,4 +221,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
     ],
+
+    'meta' => [
+        'description' => env('META_DESCRIPTION', ''),
+    ],
 ];

@@ -3,6 +3,23 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="title" content="{{ config('app.name', 'Laravel') }}">
+    <meta name="description" content="{{ config('app.meta.description') }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ config('app.url') }}">
+    <meta property="og:title" content="{{ config('app.name', 'Laravel') }}">
+    <meta property="og:description" content="{{ config('app.meta.description') }}">
+    <meta property="og:image" content="{{ asset('img/icon-vertical.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ config('app.url') }}">
+    <meta property="twitter:title" content="{{ config('app.name', 'Laravel') }}">
+    <meta property="twitter:description" content="{{ config('app.meta.description') }}">
+    <meta property="twitter:image" content="{{ asset('img/icon-vertical.png') }}">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1"
