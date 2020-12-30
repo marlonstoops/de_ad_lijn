@@ -12,8 +12,7 @@ class XmlController extends Controller
 
         $xml = '
             <Response>
-                <Say voice="alice">Thanks for trying our documentation. Enjoy!</Say>
-                <Play>http://demo.twilio.com/docs/classic.mp3</Play>
+                <Say voice="alice" language="nl-NL">Hallo ' . $name . ', dit is de ad lijn. Jij moet nu 1 ad fundum drinken.</Say>
             </Response>
         ';
 
@@ -27,13 +26,7 @@ class XmlController extends Controller
         $xml = '
             <Response>
                 <Say voice="alice">
-                    Thanks for the call. Configure your number\'s voice U R L to change this message.
-                </Say>
-
-                <Pause length="1"/>
-
-                <Say voice="alice">
-                    Let us know if we can help you in any way during your development.
+                    Thanks for the call. Visit www.adlijn.be for more information.
                 </Say>
             </Response>
         ';
