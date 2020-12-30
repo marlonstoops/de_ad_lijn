@@ -34,6 +34,7 @@ class XmlController extends Controller
     {
         $xml = '
             <Response>
+                <Pause length="1"/>
                 <Say voice="alice" language="nl-NL">
                     Bezoek www.adlijn.be voor meer informatie. A D L I J N punt B E
                 </Say>
