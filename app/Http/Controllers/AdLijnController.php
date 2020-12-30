@@ -21,8 +21,10 @@ class AdLijnController extends Controller
 
     public function post(AdLijnRequest $request)
     {
-        \Auth::user()->credit -= 1;
-        \Auth::user()->save();
+        if (!\Auth::user()->hasRole('admin')) {
+            \Auth::user()->credit -= 1;
+            \Auth::user()->save();
+        }
 
         $adlijn = new AdLijn([
             'name' => $request->get('name'),

@@ -5,6 +5,7 @@ namespace App\Models;
 use Laravel\Sanctum\HasApiTokens;
 use App\Contracts\MustVerifyMobile;
 use Laravel\Jetstream\HasProfilePhoto;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -20,6 +21,7 @@ class User extends Authenticatable implements MustVerifyMobile
     use TwoFactorAuthenticatable;
     use \App\Traits\MustVerifyMobile;
     use SoftDeletes;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
