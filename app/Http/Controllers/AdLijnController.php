@@ -29,6 +29,7 @@ class AdLijnController extends Controller
         $adlijn = new AdLijn([
             'name' => $request->get('name'),
             'mobile' => $request->get('mobile'),
+            'message_id' => $request->get('message_id', 1),
         ]);
 
         \Auth::user()->lijnen()->save($adlijn);

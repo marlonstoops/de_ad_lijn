@@ -10,16 +10,18 @@ class XmlController extends Controller
     {
         $adlijn = AdLijn::findOrFail($id);
 
-        $xml = '
-            <Response>
-                <Say voice="alice" language="nl-NL">
-                    Hallo ' . $adlijn->name . ', dit is de ad lijn.
-                    Jij moet nu 1 ad fundum drinken. '
-                    . $adlijn->user->name . ' heeft je geadlijnd.
-                    Maak een account op www.adlijn.be om zelf te adlijnen.
-                </Say>
-            </Response>
-        ';
+        $data = [
+            ':receiver_name:' => $adlijn->name,
+            ':sender_name:'   => $adlijn->user->name,
+        ];
+
+        $message = config('messages.' . $adlijn->message_id);
+
+        if (! $message) {
+            return abort(404);
+        }
+
+        $xml = str_replace(array_keys($data), $data, $message);
 
         $adlijn->delete();
 

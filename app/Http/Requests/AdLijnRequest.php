@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\Mobile;
 use App\Rules\NotOwnMobile;
+use App\Rules\IsValidMessage;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdLijnRequest extends FormRequest
@@ -26,8 +27,9 @@ class AdLijnRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'   => ['required', 'string', 'max:255'],
-            'mobile' => ['required', 'string', new Mobile, new NotOwnMobile],
+            'name'       => ['required', 'string', 'max:255'],
+            'mobile'     => ['required', 'string', new Mobile, new NotOwnMobile],
+            'message_id' => ['string', new IsValidMessage],
         ];
     }
 }

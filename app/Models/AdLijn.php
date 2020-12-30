@@ -14,6 +14,7 @@ class AdLijn extends Model
     protected $fillable = [
         'name',
         'mobile',
+        'message_id',
     ];
 
     public function user()
