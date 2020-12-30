@@ -32,8 +32,8 @@ class XmlController extends Controller
     {
         $xml = '
             <Response>
-                <Say voice="alice">
-                    Thanks for the call. Visit www.adlijn.be for more information.
+                <Say voice="alice" language="nl-NL">
+                    Bezoek www.adlijn.be voor meer informatie. A D L I J N punt B E
                 </Say>
             </Response>
         ';
