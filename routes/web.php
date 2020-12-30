@@ -34,7 +34,7 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
 
 Route::get('/verify-phone', [WelcomeController::class, 'verifyPhone'])->name('verify-phone');
-Route::get('/callback.xml', [XmlController::class, 'callback'])->name('xml-callback');
+Route::any('/callback.xml', [XmlController::class, 'callback'])->name('xml-callback');
 Route::get('/{id}.xml', [XmlController::class, 'index'])->name('xml');
 
 // Mobile verification
