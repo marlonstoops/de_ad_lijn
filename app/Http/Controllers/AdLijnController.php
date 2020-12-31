@@ -39,7 +39,7 @@ class AdLijnController extends Controller
 
         // If so reset the user's credits
         if ($calledUser) {
-            $calledUser->credit = 4;
+            $calledUser->credit = 5;
             $calledUser->save();
         }
 
