@@ -137,7 +137,7 @@
     @stack('modals')
 
     @livewireScripts
-    <script async defer data-website-id="167aff8c-59c5-45a1-adc5-1a8d563a341c" src="http://node18717-umami.cloud.interhostsolutions.be:11021/umami.js"></script>
+    <script async defer data-website-id="167aff8c-59c5-45a1-adc5-1a8d563a341c" src="https://umami.cloud.interhostsolutions.be/umami.js"></script>
 </body>
 <!-- component -->
 
