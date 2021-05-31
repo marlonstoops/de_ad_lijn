@@ -8,8 +8,6 @@ class SendMobileVerificationNotification
 {
     /**
      * Handle the event.
-     *
-     * @param  \Illuminate\Auth\Events\Registered  $event
      */
     public function handle(Registered $event)
     {

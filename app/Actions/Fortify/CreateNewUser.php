@@ -15,7 +15,6 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array  $input
      * @return \App\Models\User
      */
     public function create(array $input)
@@ -23,7 +22,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name'     => ['required', 'string', 'max:255'],
             'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email,NULL,NULL,deleted_at,NULL'],
-            'mobile'   => ['required', 'string', new Mobile, 'unique:users,mobile,NULL,NULL,deleted_at,NULL', 'exists:ad_lijnen'],
+            'mobile'   => ['required', 'string', new Mobile(), 'unique:users,mobile,NULL,NULL,deleted_at,NULL', 'exists:ad_lijnen'],
             'password' => $this->passwordRules(),
         ], [
             'mobile.exists' => 'You should get a call first before you are able to register.',

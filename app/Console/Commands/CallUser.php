@@ -58,7 +58,7 @@ class CallUser extends Command
             $mobile,
             config('twilio.number'),
             [
-                'url'    => 'http://77.243.238.175:8080/default.xml',
+                'url' => 'http://77.243.238.175:8080/default.xml',
 
                 // 'url'    => route('xml', ['id' => 1]),
                 'method' => 'get',
