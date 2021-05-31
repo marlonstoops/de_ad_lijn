@@ -33,7 +33,7 @@ trait MustVerifyMobile
      */
     public function sendMobileVerificationNotification()
     {
-        $this->notify(new VerifyMobile);
+        $this->notify(new VerifyMobile());
     }
 
     /**

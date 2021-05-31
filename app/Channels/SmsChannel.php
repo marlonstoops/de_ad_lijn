@@ -11,7 +11,6 @@ class SmsChannel
      * Send the given notification.
      *
      * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
      */
     public function send($notifiable, Notification $notification)
     {

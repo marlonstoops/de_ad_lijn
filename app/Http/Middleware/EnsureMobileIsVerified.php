@@ -12,15 +12,15 @@ class EnsureMobileIsVerified
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $redirectToRoute
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param  null|string  $redirectToRoute
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function handle($request, Closure $next, $redirectToRoute = null)
     {
-        if (! $request->user() ||
-            ($request->user() instanceof MustVerifyMobile &&
-            ! $request->user()->hasVerifiedMobile())) {
+        if (! $request->user()
+            || ($request->user() instanceof MustVerifyMobile
+            && ! $request->user()->hasVerifiedMobile())) {
             return $request->expectsJson()
                     ? abort(403, 'Your mobile number is not verified.')
                     : Redirect::route($redirectToRoute ?: 'verification.notice')

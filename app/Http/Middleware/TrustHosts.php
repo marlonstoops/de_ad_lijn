@@ -14,7 +14,7 @@ class TrustHosts extends Middleware
     public function hosts()
     {
         return [
-            "^(.+\.)?interhostsolutions\.be$",
+            '^(.+\\.)?interhostsolutions\\.be$',
             $this->allSubdomainsOfApplicationUrl(),
         ];
     }
