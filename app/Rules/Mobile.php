@@ -19,13 +19,14 @@ class Mobile implements Rule
      *
      * @param  string  $attribute
      * @param  mixed  $value
+     *
      * @return bool
      */
     public function passes($attribute, $value)
     {
         $pattern = '/^(\+324)[0-9]{8}$/';
 
-        return preg_match($pattern, $value) === 1;
+        return 1 === preg_match($pattern, $value);
     }
 
     /**

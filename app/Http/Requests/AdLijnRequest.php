@@ -28,8 +28,8 @@ class AdLijnRequest extends FormRequest
     {
         return [
             'name'       => ['required', 'string', 'max:255'],
-            'mobile'     => ['required', 'string', new Mobile, new NotOwnMobile],
-            'message_id' => ['string', new IsValidMessage],
+            'mobile'     => ['required', 'string', new Mobile(), new NotOwnMobile()],
+            'message_id' => ['string', new IsValidMessage()],
         ];
     }
 }
