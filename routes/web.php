@@ -6,6 +6,7 @@ use App\Http\Controllers\XmlController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\AdLijnController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ShortUrlController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerificationController;
 
@@ -36,6 +37,8 @@ Route::get('/terms', [TermController::class, 'index'])->name('terms');
 Route::get('/verify-phone', [WelcomeController::class, 'verifyPhone'])->name('verify-phone');
 Route::any('/callback.xml', [XmlController::class, 'callback'])->name('xml-callback');
 Route::get('/{id}.xml', [XmlController::class, 'index'])->name('xml');
+// Short urls
+Route::get('/s/{code}', [ShortUrlController::class, 'index'])->name('short-url');
 
 // Mobile verification
 Route::get('/mobile/verify', [VerificationController::class, 'notice'])
