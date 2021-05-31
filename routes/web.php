@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\XmlController;
 use App\Http\Controllers\AdLijnController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ShortUrlController;
 use App\Http\Controllers\VerificationController;
 
 /*
@@ -31,6 +32,8 @@ Route::middleware(['auth:sanctum', 'verified-mobile'])->group(function () {
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/verify-phone', [WelcomeController::class, 'verifyPhone'])->name('verify-phone');
 Route::get('/{id}.xml', [XmlController::class, 'index'])->name('xml');
+// Short urls
+Route::get('/s/{code}', [ShortUrlController::class, 'index'])->name('short-url');
 
 // Mobile verification
 Route::get('/mobile/verify', [VerificationController::class, 'notice'])

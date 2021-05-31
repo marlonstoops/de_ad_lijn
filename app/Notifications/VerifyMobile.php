@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\ShortUrl;
 use App\Channels\SmsChannel;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
@@ -99,16 +100,22 @@ class VerifyMobile extends Notification
     protected function verificationUrl($notifiable)
     {
         if (static::$createUrlCallback) {
-            return call_user_func(static::$createUrlCallback, $notifiable);
+            $url = call_user_func(static::$createUrlCallback, $notifiable);
+        } else {
+            $url = URL::temporarySignedRoute(
+                'verification.verify',
+                Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
+                [
+                    'id'   => $notifiable->getKey(),
+                    'hash' => sha1($notifiable->getMobileForVerification()),
+                ]
+            );
         }
 
-        return URL::temporarySignedRoute(
-            'verification.verify',
-            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
-            [
-                'id'   => $notifiable->getKey(),
-                'hash' => sha1($notifiable->getMobileForVerification()),
-            ]
-        );
+        // Create a short url object
+        $url = ShortUrl::create(compact('url'));
+
+        // Return the generated short url
+        return $url->short_url;
     }
 }
